@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\hims-country.props" />
+</Project>
