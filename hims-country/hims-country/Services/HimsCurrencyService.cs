@@ -13,7 +13,7 @@ namespace HimsCurrency.Services
     public class HimsCurrencyService
     {
 
-        //private readonly IUnitOfWork unit;
+       
         private readonly IUnitOfWork unit;
         public HimsCurrencyService(IUnitOfWork unitOfWork)
         { //injection repo in service
@@ -30,9 +30,32 @@ namespace HimsCurrency.Services
         }
         public async Task<string> Add(Currency input)
         {
+            var existingName = unit.currencyRepo.context
+                .Currencies.FirstOrDefault(i => i.Name == input.Name);
 
-            var res = await unit.currencyRepo.Add(input);
-            return res;
+            var existingCurrencyCode= unit.currencyRepo.context
+                .Currencies.FirstOrDefault(i => i.CurrencyCode == input.CurrencyCode);
+
+            
+            if (existingName != null)
+            {
+                throw new Exception("Name  already exist");
+            }
+            if (existingCurrencyCode != null)
+            {
+                throw new Exception("Currency Code  already exist");
+            }
+
+            if (input.CurrencyCode == "LYD")
+            {
+                input.IsDefault = true;
+                var res = await unit.currencyRepo.Add(input);
+                return res;
+            }
+            input.IsDefault = false;
+            var result = await unit.currencyRepo.Add(input);
+            return result;
+
 
         }
         public async Task<string> UpdateCurrency(Currency currency)
@@ -46,58 +69,7 @@ namespace HimsCurrency.Services
             var setting = await unit.currencyRepo.DeleteCurrency(id);
             return setting;
         }
-        /*public async Task<Setting> GetByName(string setting)
-        {
-
-            var result = await unit.SystemSettings.GetByName(setting);
-            if (result != null)
-            {
-                var existingMemberNo =
-                unit.SystemSettings.context.Settings.FirstOrDefault(i => i.Name == setting);
-
-                var res = await unit.SystemSettings.GetByName(setting);
-                return res;
-            }
-            throw new Exception("name is not found");
-
-        }
-
-        public async Task<Setting> GetById(int id)
-        {
-            var res = await unit.SystemSettings.GetById2(id);
-            return res;
-        }
-
-
-        public async Task<string> Add(Setting input)
-        {
-
-            var res = await unit.SystemSettings.Add(input);
-            return res;
-
-        }
-
-
-
-
-        public async Task<string> DeleteSetting(int id)
-        {
-            var setting = await unit.SystemSettings.DeleteSetting(id);
-            return setting;
-        }
-
-        public async Task<string> UpdateSetting(Setting setting)
-        {
-            var res = await unit.SystemSettings.UpdateSetting(setting);
-            return res;
-
-        }
-
-        //var result = await unit.SystemSettings.GetByName(setting);
-        //    return result;
-
-    }
-*/
+         
 
     }
 }

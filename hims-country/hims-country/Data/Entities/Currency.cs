@@ -1,4 +1,5 @@
 ﻿using HimsCountry.Data.Entities.Commen;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace HimsCountry.Data.Entities
@@ -14,7 +15,8 @@ namespace HimsCountry.Data.Entities
         public  decimal Rate { get; set; }
         public  string DisplayLocale { get; set; }
         public  bool IsActive { get; set; }
-        public  bool IsDefault { get; set; }
+        [DefaultValue(false)]
+        public  bool IsDefault { get; set; } 
         public  int DisplayOrder { get; set; }
         public  DateTime CreatedAt { get; set; }
         public  DateTime UpdatedAt { get; set; }

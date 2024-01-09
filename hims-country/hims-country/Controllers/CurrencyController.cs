@@ -27,7 +27,7 @@ namespace HimsCountry.Controllers
         [HttpGet("GetAll")]
         public async Task<IActionResult> GetAsync()
         {
-            return Ok(await _Repo.GetAll());
+            return Ok(await service.GetAll());
         }
 
         [HttpGet("GetById")]
@@ -52,19 +52,13 @@ namespace HimsCountry.Controllers
 
                 return Ok(res);
 
-                // return await service.Add(input);
-
-                //return Ok(res);
-
-
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
 
-            //await _Repo.Add(input);
-            //return Ok("ok");
+         
 
         }
         [HttpPost("Update")]
@@ -81,9 +75,7 @@ namespace HimsCountry.Controllers
             {
                 return BadRequest(ex.Message);
             }
-            //var res = await _Repo.UpdateSetting(input);
-
-            //return Ok(res);
+            
 
         }
         [HttpDelete("Delete")]
@@ -98,9 +90,6 @@ namespace HimsCountry.Controllers
                 return BadRequest(ex.Message);
             }
 
-            //var res = await _Repo.DeleteSetting(input);
-
-            //return Ok(res);
 
         }
 

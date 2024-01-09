@@ -22,7 +22,7 @@ namespace HimsCountry.Services
         public HimsCurrencyRepo currencyRepo { get; }
 
         public HimsCountryRepo countryRepo { get; }
-        // public HimsCountryRepo countryRepo => throw new NotImplementedException();
+         
 
         public UnitOfWork(HimsCurrencyRepo Repo, HimsCountryRepo _countryRepo)
         {

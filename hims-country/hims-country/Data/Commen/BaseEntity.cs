@@ -1,6 +1,4 @@
 ﻿
-//namespace HimsCountry.Data.Entities.Commen;
-    
 namespace HimsCountry.Data.Entities.Commen
 {
 

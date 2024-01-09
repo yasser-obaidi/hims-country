@@ -1,4 +1,5 @@
 ﻿using HimsCountry.Data.Entities.Commen;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace HimsCountry.Data.Entities
@@ -13,6 +14,7 @@ namespace HimsCountry.Data.Entities
         public string ThreeLetterIsoCode { get; set; }
         public string NumericIsoCode { get; set; }
         public bool IsActive { get; set; }
+        [DefaultValue(1)]
         public int DisplayOrder { get; set; }
         public DateTime CreatedAt { get; set; }
 

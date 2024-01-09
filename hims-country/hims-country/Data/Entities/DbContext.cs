@@ -12,8 +12,7 @@ namespace HimsCountry.Data
         public Context() : base() { }
         public DbSet<Currency> Currencies { get; set; }
         public DbSet<Country> Countries { get; set; }
-        //public DbSet<Member> MemberModel { get; set; }
-        //public DbSet<Entities.Payment> payment { get; set; }
+       
         public Context(DbContextOptions options) : base(options) { }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -25,7 +24,7 @@ namespace HimsCountry.Data
             // Configure YourEntity primary key
             modelBuilder.Entity<Currency>().HasKey(e => e.Id);
             modelBuilder.Entity<Country>().HasKey(e => e.Id);
-            // Other configurations or relationships can be defined here
+
 
             base.OnModelCreating(modelBuilder);
         }

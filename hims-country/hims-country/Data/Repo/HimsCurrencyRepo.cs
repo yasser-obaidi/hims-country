@@ -65,10 +65,10 @@ namespace HimsCountry.Data.Repo
                 else
                 {
                     throw new Exception("not updated");
-                    // return "not updated";
+                     
                 }
             }
-            //return "id not found";
+            
             throw new Exception("id not found");
 
         }
